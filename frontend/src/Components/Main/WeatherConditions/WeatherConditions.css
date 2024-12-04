@@ -1,0 +1,75 @@
+/* Контейнер погодних умов */
+.weather-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Заголовок */
+.weather-title {
+    font-size: 2rem;
+    color: #01579b;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Інформація про погоду */
+.weather-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Елементи погоди */
+.weather-item {
+    text-align: left;
+    font-size: 1rem;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.weather-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Мітка та значення */
+.weather-label {
+    font-weight: bold;
+    color: #616161;
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.weather-value {
+    font-size: 1.4rem;
+    color: #212121;
+    font-weight: 500;
+}
+
+/* Адаптивність */
+@media (max-width: 480px) {
+    .weather-title {
+        font-size: 1.5rem;
+    }
+
+    .weather-item {
+        font-size: 0.9rem;
+    }
+
+    .weather-value {
+        font-size: 1.2rem;
+    }
+}

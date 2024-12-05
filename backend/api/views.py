@@ -70,7 +70,7 @@ class LastHoursWeatherAPIView(APIView):
 
             try:
             # Запит до стороннього API погоди
-                print(f"{url}?{urlencode(params)}")
+                # print(f"{url}?{urlencode(params)}")
                 response = requests.get(url, params=params)
                 if response.status_code == 200:
                     data = response.json()

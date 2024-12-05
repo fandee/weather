@@ -73,7 +73,7 @@ class LastHoursWeatherAPIView(APIView):
                 print(f"{url}?{urlencode(params)}")
                 response = requests.get(url, params=params)
                 if response.status_code == 200:
-                    data = response.json()x
+                    data = response.json()
                     data = data['forecast']['forecastday'][0]['hour'][0]
                     weather = {
                         'time': data['time'].split()[1],

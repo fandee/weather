@@ -14,7 +14,7 @@ export const ClimateCharts = () => {
     const fetchData = async () => {
       try {
         // Запит до бекенду
-        const response = await fetch('http://127.0.0.1:8000/api/last_weather');
+        const response = await fetch('http://127.0.0.1:8000/api/last_weather/');
         if (!response.ok) {
           throw new Error('Не вдалося отримати дані від API');
         }

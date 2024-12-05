@@ -11,19 +11,30 @@ export const ClimateCharts = () => {
   const [labels, setLabels] = useState([]);
 
   useEffect(() => {
-    // Імітація отримання даних з API
-    const fetchData = () => {
-      const tempData = [15, 17, 20, 22, 18, 19, 21];
-      const humData = [70, 65, 60, 75, 80, 85, 78];
-      const windData = [5, 10, 7, 12, 9, 15, 8];
-      const precipData = [0, 1, 0.5, 0, 2, 0.8, 1.2];
-      const timeLabels = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'];
+    const fetchData = async () => {
+      try {
+        // Запит до бекенду
+        const response = await fetch('http://127.0.0.1:8000/api/last_weather');
+        if (!response.ok) {
+          throw new Error('Не вдалося отримати дані від API');
+        }
+        const data = await response.json();
 
-      setTemperatureData(tempData);
-      setHumidityData(humData);
-      setWindSpeedData(windData);
-      setPrecipitationData(precipData);
-      setLabels(timeLabels);
+        // Обробка даних
+        const tempData = data.map(item => item.temperature);
+        const humData = data.map(item => item.humidity);
+        const windData = data.map(item => item.wind);
+        const precipData = data.map(item => item.precip);
+        const timeLabels = data.map(item => item.time);
+
+        setTemperatureData(tempData);
+        setHumidityData(humData);
+        setWindSpeedData(windData);
+        setPrecipitationData(precipData);
+        setLabels(timeLabels);
+      } catch (error) {
+        console.error('Помилка завантаження даних:', error);
+      }
     };
 
     fetchData();
@@ -59,7 +70,7 @@ export const ClimateCharts = () => {
     labels: labels,
     datasets: [
       {
-        label: 'Швидкість вітру (м/с)',
+        label: 'Швидкість вітру (км/год)',
         data: windSpeedData,
         borderColor: 'rgba(75, 192, 192, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -83,7 +94,6 @@ export const ClimateCharts = () => {
 
   return (
     <div className="climate-charts-container">
-      {/* <h2 className="charts-title">Поточні кліматичні показники</h2> */}
       <div className="chart-container">
         <div className="chart-item">
           <Line data={temperatureChartData} options={{ responsive: true, maintainAspectRatio: false }} />

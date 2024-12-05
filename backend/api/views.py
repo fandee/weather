@@ -29,7 +29,7 @@ class CurrentWeatherAPIView(APIView):
 
         try:
             # Запит до стороннього API погоди
-            response = requests.get(BASE_URL, params=params)
+            response = requests.get(url, params=params)
             if response.status_code == 200:
                 data = response.json()
                 cur_weather = {
